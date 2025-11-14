@@ -50,6 +50,13 @@ class GPUManager:
             }
         log_info(f"DEBUG: End Loading model in GPU id [{gpu_id}]\n")
 
+    def get_model_loaded(self, gpu_id=0):
+        log_info(f"DEBUG: GPU id [{gpu_id}] >> Load Model Status: [{self.models_loaded}]\n")
+        if not self.models_loaded:
+            log_error("Models are not loaded yet. Please call load_models() first.", "")
+            raise RuntimeError("Models are not loaded yet. Please call load_models() first.")
+        return self.models_loaded
+
     def get_model(self, gpu_id=0):
         log_info(f"DEBUG: GPU id [{gpu_id}] >> Load Model Status: [{self.models_loaded}]\n")
         if not self.models_loaded:

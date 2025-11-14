@@ -19,7 +19,7 @@ class TranscribeAudioTask(Thread):
         # Selecionar a GPU menos utilizada # to do
         gpu_id = min(range(gpu_manager.num_gpus), key=lambda i: torch.cuda.memory_allocated(i))
         log_info(f"GPU Selected: [{gpu_id}]\n")       
-        model = gpu_manager.get_model(gpu_id)
+        model = gpu_manager.get_model_loaded(gpu_id)
         log_info(f"DEBUG: Model: [{model}]")
         
         segments, info = model.transcribe(audio_path)
